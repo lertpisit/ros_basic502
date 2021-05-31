@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot name="wheel" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find robot_description)/urdf/properties.xacro"/>
+    <xacro:macro name="wheel" params="name translation rotation parent">
+
+        <gazebo>
+        
+        </gazebo>
+        <link name="${name}_wheel">
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="${WHEEL_RADIUS}" length="0.02"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="${WHEEL_RADIUS}" length="0.02"/>
+                </geometry>
+                
+            </collision>
+            
+            <inertial>
+                <origin xyz="${COM_WHEEL}" rpy="0.0 0.0 0.0"/>
+                <mass value="${MASS_WHEEL}"/>
+                <inertia ixx="${Ixx_wheel}" ixy="${Ixy_wheel}" ixz="${Ixz_wheel}" iyy="${Iyy_wheel}" iyz="${Iyz_wheel}" izz="${Izz_wheel}"/>
+            </inertial>
+
+        </link>
+        
+        <joint name="${name}_wheel_joint" type="continuous">
+            <origin xyz="${translation}" rpy="${rotation}"/>
+            <parent link="${parent}"/>
+            <child link="${name}_wheel"/>
+            <axis xyz="0.0 0.0 1"/>
+            <limit effort="${U_MAX}" velocity="${V_MAX}"/>
+            <dynamics damping="${WHEEL_JOINT_DAMP}" />
+            
+        </joint>
+
+        <gazebo reference="${name}_wheel">
+            <mu>5.5</mu>
+            <mu2>3.0</mu2>
+            <material>
+                Gazebo/Black
+            </material>    
+        </gazebo>
+    </xacro:macro>
+    
+</robot>

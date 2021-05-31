@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+     <!-- basic constant variable-->
+    <xacro:property name="PI" value= "3.1415926"/>
+
+    <xacro:property name="SIZE_BASE" value= "0.2 0.15 0.015"/>
+
+    <xacro:property name="WHEEL_RADIUS" value= "0.06"/>
+    <xacro:property name="U_MAX" value= "10.0"/>
+    <xacro:property name="V_MAX" value= "20.0"/>
+    <xacro:property name="WHEEL_JOINT_DAMP" value= "0.3"/>
+
+    <xacro:property name="RADIUS_CASTER_HOLDER" value= "0.015"/>
+    <xacro:property name="LENGHT_CASTER_HOLDER" value= "0.02"/>
+    <xacro:property name="RADIUS_CASTER_WHEEL" value= "0.01"/>
+
+    <xacro:property name="SIZE_MOTOR" value= "0.04 0.04 0.05"/>
+
+    <xacro:property name="STICK_RADIUS" value= "0.005"/>
+    <xacro:property name="STICK_HEIGHT" value= "0.05"/>
+
+    <xacro:property name="STICK_TRANSLATION_X" value= "0.075"/>
+    <xacro:property name="STICK_TRANSLATION_Y" value= "0.05"/>
+    <xacro:property name="STICK_TRANSLATION_Z" value= "-0.0325"/>
+
+    <xacro:property name="STACK_HEIGHT" value= "0.065"/>
+
+
+    <!-- mass of each link -->
+    <xacro:property name="MASS_MOTOR" value= "0.2"/>
+    <xacro:property name="MASS_STACK" value="0.25"/>
+    <xacro:property name="MASS_WHEEL" value= "0.3"/>
+    <xacro:property name="MASS_CASTER_HOLDER" value= "0.01413717"/>
+    <xacro:property name="MASS_CASTER_WHEEL" value= "0.00418879"/>
+    <xacro:property name="MASS_STICK" value= "0.003927"/>
+    <!-- center of mass of each link -->
+    <xacro:property name="COM_MOTOR" value= "0 0 0"/>
+    <xacro:property name="COM_STACK" value= "0 0 0"/>
+    <xacro:property name="COM_WHEEL" value= "0 0 0"/>
+    <xacro:property name="COM_CASTER_HOLDER" value= "0 0 0"/>
+    <xacro:property name="COM_CASTER_WHEEL" value= "0 0 0"/>
+    <xacro:property name="COM_STICK" value= "0 0 0"/>
+    <!-- inertia value of each link -->
+    <xacro:property name="Ixx_stack" value= "0.009"/>
+    <xacro:property name="Ixy_stack" value= "0"/>
+    <xacro:property name="Ixz_stack" value= "0"/>
+    <xacro:property name="Iyy_stack" value= "0.0015"/>
+    <xacro:property name="Iyz_stack" value= "0"/>
+    <xacro:property name="Izz_stack" value= "0.0023"/>
+
+    <xacro:property name="Ixx_stick" value= "0.00000084"/>
+    <xacro:property name="Ixy_stick" value= "0"/>
+    <xacro:property name="Ixz_stick" value= "0"/>
+    <xacro:property name="Iyy_stick" value= "0.00000084"/>
+    <xacro:property name="Iyz_stick" value= "0"/>
+    <xacro:property name="Izz_stick" value= "0.0000005"/>
+
+    <xacro:property name="Ixx_motor" value= "0.00002733"/>
+    <xacro:property name="Ixy_motor" value= "0"/>
+    <xacro:property name="Ixz_motor" value= "0"/>
+    <xacro:property name="Iyy_motor" value= "0.00002733"/>
+    <xacro:property name="Iyz_motor" value= "0"/>
+    <xacro:property name="Izz_motor" value= "0.00002133"/>
+
+    <xacro:property name="Ixx_wheel" value= "0.00021112"/>
+    <xacro:property name="Ixy_wheel" value= "0"/>
+    <xacro:property name="Ixz_wheel" value= "0"/>
+    <xacro:property name="Iyy_wheel" value= "0.00021112"/>
+    <xacro:property name="Iyz_wheel" value= "0"/>
+    <xacro:property name="Izz_wheel" value= "0.00040715"/>
+
+    <xacro:property name="Ixx_caster_wheel" value= "0.00000017"/>
+    <xacro:property name="Ixy_caster_wheel" value= "0"/>
+    <xacro:property name="Ixz_caster_wheel" value= "0"/>
+    <xacro:property name="Iyy_caster_wheel" value= "0.00000017"/>
+    <xacro:property name="Iyz_caster_wheel" value= "0"/>
+    <xacro:property name="Izz_caster_wheel" value= "0.00000017"/>
+
+    <xacro:property name="Ixx_caster_holder" value= "0.00000127"/>
+    <xacro:property name="Ixy_caster_holder" value= "0"/>
+    <xacro:property name="Ixz_caster_holder" value= "0"/>
+    <xacro:property name="Iyy_caster_holder" value= "0.00000127"/>
+    <xacro:property name="Iyz_caster_holder" value= "0"/>
+    <xacro:property name="Izz_caster_holder" value= "0.00000159"/>
+
+     <!-- property of sensor lidar and camera -->
+    <xacro:property name="camera_link" value="0.05" /> <!-- Size of square 'camera' box -->
+    <xacro:property name="update_rate" value="60" />
+</robot>

@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<robot name= "robot_stack" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find robot_description)/urdf/properties.xacro"/>
+    <xacro:macro name="stack" params="name translation rotation parent">
+
+    <!-- create stack floor -->
+    <link name="${name}_stack">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${SIZE_BASE}"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${SIZE_BASE}"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <origin xyz="${COM_STACK}" rpy="0.0 0.0 0.0"/>
+            <mass value="${MASS_STACK}"/>
+            <inertia ixx="${Ixx_stack}" ixy="${Ixy_stack}" ixz="${Ixz_stack}" iyy="${Iyy_stack}" iyz="${Iyz_stack}" izz="${Izz_stack}"/>
+        </inertial>
+        
+    </link>
+    <!-- create stick link  -->
+    <link name="${name}_stick_1">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${STICK_RADIUS}" length="${STICK_HEIGHT}"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${STICK_RADIUS}" length="${STICK_HEIGHT}"/>
+            </geometry>
+        </collision>
+
+         <inertial>
+            <origin xyz="${COM_STICK}" rpy="0.0 0.0 0.0"/>
+            <mass value="${MASS_STICK}"/>
+            <inertia ixx="${Ixx_stick}" ixy="${Ixy_stick}" ixz="${Ixz_stick}" iyy="${Iyy_stick}" iyz="${Iyz_stick}" izz="${Izz_stick}"/>
+        </inertial>
+
+    </link>
+    <link name="${name}_stick_2">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${STICK_RADIUS}" length="${STICK_HEIGHT}"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${STICK_RADIUS}" length="${STICK_HEIGHT}"/>
+            </geometry>
+        </collision>
+
+         <inertial>
+            <origin xyz="${COM_STICK}" rpy="0.0 0.0 0.0"/>
+            <mass value="${MASS_STICK}"/>
+            <inertia ixx="${Ixx_stick}" ixy="${Ixy_stick}" ixz="${Ixz_stick}" iyy="${Iyy_stick}" iyz="${Iyz_stick}" izz="${Izz_stick}"/>
+        </inertial>
+
+    </link>
+    <link name="${name}_stick_3">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${STICK_RADIUS}" length="${STICK_HEIGHT}"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${STICK_RADIUS}" length="${STICK_HEIGHT}"/>
+            </geometry>
+        </collision>
+
+         <inertial>
+            <origin xyz="${COM_STICK}" rpy="0.0 0.0 0.0"/>
+            <mass value="${MASS_STICK}"/>
+            <inertia ixx="${Ixx_stick}" ixy="${Ixy_stick}" ixz="${Ixz_stick}" iyy="${Iyy_stick}" iyz="${Iyz_stick}" izz="${Izz_stick}"/>
+        </inertial>
+
+    </link>
+
+    <link name="${name}_stick_4">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${STICK_RADIUS}" length="${STICK_HEIGHT}"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${STICK_RADIUS}" length="${STICK_HEIGHT}"/>
+            </geometry>
+        </collision>
+
+         <inertial>
+            <origin xyz="${COM_STICK}" rpy="0.0 0.0 0.0"/>
+            <mass value="${MASS_STICK}"/>
+            <inertia ixx="${Ixx_stick}" ixy="${Ixy_stick}" ixz="${Ixz_stick}" iyy="${Iyy_stick}" iyz="${Iyz_stick}" izz="${Izz_stick}"/>
+        </inertial>
+    </link>
+
+<!-- joint from parent to stack_floor -->
+    <joint name="${parent}_to_${name}_stack" type="fixed">
+        <origin xyz="${translation}" rpy="${rotation}"/>
+        <parent link="${parent}"/>
+        <child link="${name}_stack"/>
+    </joint>
+
+
+<!-- joint from stack to 4 sticks -->
+    <joint name="${name}_stack_to_stick_1" type="fixed">
+        <origin xyz="${STICK_TRANSLATION_X} ${STICK_TRANSLATION_Y} ${STICK_TRANSLATION_Z}" rpy="0 0 0"/>
+        <parent link="${name}_stack"/>
+        <child link="${name}_stick_1"/>
+    </joint>
+
+     <joint name="${name}_stack_to_stick_2" type="fixed">
+        <origin xyz="${STICK_TRANSLATION_X} -${STICK_TRANSLATION_Y} ${STICK_TRANSLATION_Z}" rpy="0 0 0"/>
+        <parent link="${name}_stack"/>
+        <child link="${name}_stick_2"/>
+    </joint>
+
+    <joint name="${name}_stack_to_stick_3" type="fixed">
+        <origin xyz="-${STICK_TRANSLATION_X} ${STICK_TRANSLATION_Y} ${STICK_TRANSLATION_Z}" rpy="0 0 0 "/>
+        <parent link="${name}_stack"/>
+        <child link="${name}_stick_3"/>
+    </joint>
+
+    <joint name="${name}_stack_to_stick_4" type="fixed">
+        <origin xyz="-${STICK_TRANSLATION_X} -${STICK_TRANSLATION_Y} ${STICK_TRANSLATION_Z}" rpy="0 0 0"/>
+        <parent link="${name}_stack"/>
+        <child link="${name}_stick_4"/>
+    </joint>
+
+    </xacro:macro>
+</robot>

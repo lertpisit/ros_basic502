@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+	 <!-- create robot -->
+    <param name="robot_description" command = "$(find xacro)/xacro $(find robot_description)/urdf/ros_robot.xacro"/>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher"/>
+    	
+     <!-- setting rviz properties to show camera and laser can when open rviz (change config and class in rviz .file)-->
+    <node pkg="rviz" type="rviz" name="rviz" args = "-d $(find robot_description)/rviz/display.rviz" required="true"/>
+    <!-- load world in Gazebo -->
+	<!-- <include file="$(find gazebo_ros)/launch/empty_world.launch"/> -->
+
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(find robot_descripion)/world/house_with_object.world"/>
+	</include>
+    <!-- spawn robot in Gazebo -->
+	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args=" -urdf -model ros_robot -param robot_description"/>
+		
+</launch>

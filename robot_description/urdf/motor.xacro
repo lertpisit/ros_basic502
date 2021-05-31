@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot name= "robot_motor" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find robot_description)/urdf/properties.xacro"/>
+    <xacro:macro name="motor" params="name translation rotation parent">
+        
+    <link name="${name}_motor">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${SIZE_MOTOR}"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${SIZE_MOTOR}"/>
+            </geometry>
+        </collision>
+        
+        <inertial>
+            <origin xyz="${COM_MOTOR}" rpy="0.0 0.0 0.0"/>
+            <mass value="${MASS_MOTOR}"/>
+            <inertia ixx="${Ixx_motor}" ixy="${Ixy_motor}" ixz="${Ixz_motor}" iyy="${Iyy_motor}" iyz="${Iyz_motor}" izz="${Izz_motor}"/>
+        </inertial>
+        
+    </link>
+    
+    <joint name="${name}_motor_joint" type="fixed">
+
+        <origin xyz="${translation}" rpy="${rotation}"/>
+        <parent link="${parent}"/>
+        <child link="${name}_motor"/>
+
+
+    </joint>
+
+    <gazebo reference="${name}_motor">
+            <mu1>2.0</mu1>
+            <mu2>2.0</mu2>
+            <material>
+                Gazebo/Grey
+            </material>    
+    </gazebo>
+
+    </xacro:macro>
+</robot>
