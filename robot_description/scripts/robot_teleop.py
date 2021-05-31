@@ -39,7 +39,7 @@ class RobotTeleop(threading.Thread):
             self.timeout = None
         self.start()
 
-    def update(self, x, z):
+    def update(self, speed, turn):
         self.condition.acquire()
         self.speed = speed
         self.turn = turn
