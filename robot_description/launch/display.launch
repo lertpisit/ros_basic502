@@ -12,7 +12,7 @@
 	<!-- <include file="$(find gazebo_ros)/launch/empty_world.launch"/> -->
 
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">
-		<arg name="world_name" value="$(find robot_descripion)/world/house_with_object.world"/>
+		<arg name="world_name" value="$(find robot_description)/world/house_with_object.world"/>
 	</include>
     <!-- spawn robot in Gazebo -->
 	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args=" -urdf -model ros_robot -param robot_description"/>
